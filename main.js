@@ -20,10 +20,15 @@ var gameModule = (function() {
         ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2 , true);
         ctx.fill();
 
-        if (counter >= 10 ) {
+        ctx.fillStyle = 'black';
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2 , true);
+        ctx.fill();
+
+        if (counter >= 50 ) {
 
         }else{
-         timeoutVar =setTimeout(start,1000)
+         timeoutVar =setTimeout(start,500)
         counter = counter + 1;
 
         console.log("counter:"+counter);
@@ -34,6 +39,7 @@ var gameModule = (function() {
       return{
         start:start
       }
+      
 
 }) ();
 
