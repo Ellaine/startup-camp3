@@ -20,10 +20,6 @@ var gameModule = (function() {
         ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2 , true);
         ctx.fill();
 
-        ctx.fillStyle = 'black';
-        ctx.beginPath();
-        ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2 , true);
-        ctx.fill();
 
         if (counter >= 50 ) {
 
