@@ -31,12 +31,7 @@ var gameModule = (function() {
         }
 
       }
-
-      return{
-        start:start
-      }
-      
-function start(){
+      function start(){
 
         var canvas = document.getElementById('game');
         var ctx = canvas.getContext('2d');
@@ -69,6 +64,7 @@ function start(){
         start:start
       }
       
+
 
 }) ();
 
