@@ -6,7 +6,7 @@ var gameModule = (function() {
                 ballY,
                 ballR,
                 scores,
-                colors = ['#ff0000', '#0000ff', 'yellow'],
+                colors = ['pink', 'green', 'yellow'],
                 length = colors.length;
 
         function touchEvent(evt) {
