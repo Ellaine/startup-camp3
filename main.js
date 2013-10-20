@@ -1,31 +1,41 @@
 var gameModule = (function() {
-    
-    var timeoutVar,
-    counter = 0;  
-    
-    var colors = ['pink','yellow','green']
-    var length = colors.length;
-    
-    function touchEven(evt){
 
-             var x = evt.clientX,
-                 y = evt.clientY;
+        var timeoutVar,
+                counter = 0,
+                ballX,
+                ballY,
+                ballR,
+                scores,
+                colors = ['#ff0000', '#0000ff', 'yellow'],
+                length = colors.length;
 
-            console.log("click: "+ x +","+ y);
-   } 
+        function touchEvent(evt) {
+                var x = evt.clientX,
+                        y = evt.clientY,
+                        tmp = (ballX - x) * (ballX - x) + (ballY - y) * (ballY - y);
 
-    function start(){
-             document.getElementById("main").addEventLintener("click",touchEven,false);  
-             startGame();
-         }
+                console.log("Clicked: " + x + " , " + y);
 
-    function startGame(){
+                if (tmp < ballR*ballR) {
+                        scores = scores + (100 - ballR);
+                        console.log("Hit ! Your scores: " + scores);
+                }
+        }
+
+        function start() {
+                scores = 0;
+
+                document.getElementById("main").addEventListener("click", touchEvent, false);
+                startGame();                
+        }
+
+        function startGame() {
         var canvas = document.getElementById('game');
         var ctx = canvas.getContext('2d');
-
-        var ballX = Math.floor(Math.random()*600);
-        var ballY = Math.floor(Math.random()*450);
-        var ballR = Math.floor(Math.random()*80);
+            
+            ballX = Math.floor(Math.random() * 600); // 0..300
+            ballY = Math.floor(Math.random() * 450);
+            ballR = Math.floor(Math.random() * 80);
 
         canvas.width = 640;
         canvas.height = 480;
@@ -35,28 +45,21 @@ var gameModule = (function() {
         ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2 , true);
         ctx.fill();
 
-
-        if (counter >= 20 ) {
-            gameOver();
-
-        }else{
-         timeoutVar =setTimeout(start,2000)
-        counter = counter + 1;
-
+        if (counter >= 10) {
+                gameOver();
+        } else {
+                timeoutVar = setTimeout(startGame, 2000);
+                counter = counter + 1;
+            } 
         }
 
-      }
-    function gameOver(){
-        console.log("counter:"+counter);
-    }
+        function gameOver() {
+        console.log("Final: " + scores);
+        }
 
-
-      return{
-        start:start
-      }
-      
-
-
+        return {
+                start: start
+        }
 }) ();
 
 gameModule.start();
